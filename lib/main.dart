@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _pressed = false;
+  bool _pressed = true;
   Future<List<Launch>> _fetchLaunchs() async {
     final response =
         await http.get(Uri.parse("https://api.spacexdata.com/v3/missions"));
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Expanded(
                                   child: Text(
                                 launch.description.toString(),
-                                softWrap: true,
+                                softWrap: _pressed,
                               ))
                             ]),
                             Row(
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ? ElevatedButton.icon(
                                         onPressed: _onPress,
                                         icon: const Icon(Icons.arrow_upward),
-                                        label: const Text("More"),
+                                        label: const Text("Less"),
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.grey),
                                       )
